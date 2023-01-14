@@ -1,9 +1,9 @@
 import {makeAutoObservable} from "mobx";
 import Api from "../Api/Api";
 import IProduct from "./Interface/IProduct";
-import IRequestPurchase from "./Interface/IRequestPurchase";
+import IPurchase from "./Interface/IPurchase";
 
-class RequestPurchase implements IRequestPurchase{
+class RequestPurchase implements IPurchase{
     Date: Date | null = null;
     Location: string = '';
     NameShop: string = '';

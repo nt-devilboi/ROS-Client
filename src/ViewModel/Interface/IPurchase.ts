@@ -1,5 +1,4 @@
 import IProduct from "./IProduct";
-import Api from "../../Api/Api";
 
 export default interface IRequestPurchase {
     Date: Date | null;
@@ -14,5 +13,4 @@ export default interface IRequestPurchase {
     AddProduct(product: IProduct): IProduct
 
     LoadToServer(): void
-
 }
