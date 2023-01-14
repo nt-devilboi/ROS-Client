@@ -1,5 +1,5 @@
 import React from "react";
-import listCheque from "../ListCheque/ListCheque";
+import listCheque from "../Api/ListCheque/ListCheque";
 import {observer} from "mobx-react";
 
 @observer

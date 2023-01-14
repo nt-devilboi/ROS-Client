@@ -1,5 +1,5 @@
 import React from "react";
-import ListCheque from "../../ListCheque/ListCheque";
+import ListCheque from "../../Api/ListCheque/ListCheque";
 import {Link} from "react-router-dom";
 import styles from "./Header.module.css"
 import {observer} from "mobx-react";

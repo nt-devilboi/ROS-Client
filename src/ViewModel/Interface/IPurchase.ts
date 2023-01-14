@@ -1,6 +1,6 @@
 import IProduct from "./IProduct";
 
-export default interface IRequestPurchase {
+export default interface IPurchase {
     Date: Date | null;
     Location: string;
     NameShop: string;
@@ -13,4 +13,5 @@ export default interface IRequestPurchase {
     AddProduct(product: IProduct): IProduct
 
     LoadToServer(): void
+
 }

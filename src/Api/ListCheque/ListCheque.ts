@@ -1,6 +1,6 @@
-import Cheque from "../Entity/Cheque";
+import Cheque from "../../Entity/Cheque";
 import {action, makeAutoObservable, observable, runInAction} from "mobx";
-import Api from "../Api/Api";
+import Api from "../Api";
 class ListCheque {
     @observable
     List: Cheque[]

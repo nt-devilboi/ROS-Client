@@ -3,17 +3,24 @@ import Api from "../Api/Api";
 import IProduct from "./Interface/IProduct";
 import IPurchase from "./Interface/IPurchase";
 
-class RequestPurchase implements IPurchase{
-    Date: Date | null = null;
-    Location: string = '';
-    NameShop: string = '';
-    Products: IProduct[] = [];
+class Purchase implements IPurchase{
+
+    public Date: Date | null = null;
+    public Location: string = '';
+    public NameShop: string = '';
+    public Products: IProduct[] = [];
 
     //записать проверку на ошибки везде с выводом красными буквами, что не верно.
     constructor() {
         makeAutoObservable(this)
     }
 
+    Rest(): void{
+        this.Date = null;
+        this.Location = " ";
+        this.NameShop = ' ';
+        this.Products = [];
+    }
     ChangeNameShop(nameShop: string): void {
         this.NameShop = nameShop;
     }
@@ -27,10 +34,12 @@ class RequestPurchase implements IPurchase{
         return product;
     }
 
-    LoadToServer() {
+    LoadToServer(){
         Api.AxiosPostPurchase(this);
     }
 
+
+
 }
 
-export default RequestPurchase;
+export default Purchase;
