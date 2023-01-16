@@ -1,10 +1,10 @@
 import IProduct from "./IProduct";
 
 export default interface IPurchase {
-    Date: Date | null;
-    Location: string;
-    NameShop: string;
-    Products: IProduct[];
+    date: Date | null;
+    location: string;
+    nameShop: string;
+    products: IProduct[];
 
     ChangeNameShop(nameShop: string): void
 

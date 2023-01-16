@@ -15,7 +15,7 @@ class AddPurchase extends React.Component<{requestPurchase: IPurchase}> {
                 <InputChange func={(e: string) => this.props.requestPurchase.ChangeNameShop(e)}
                              infoInput="ведите название магазина"/>
                 <InputChange func={(e: string) => this.props.requestPurchase.ChangeLocation(e)} infoInput='где купил'/>
-                {this.props.requestPurchase.Products.map((p) => <InputProduct key={p.productId.toString()} product={p}/>)}
+                {this.props.requestPurchase.products.map((p) => <InputProduct key={p.productId.toString()} product={p}/>)}
                 <input type='button' defaultValue='добавить товар'
                        onClick={() => this.props.requestPurchase.AddProduct(new Product())}/>
                 <input type='button' defaultValue="загрузить" onClick={() => {

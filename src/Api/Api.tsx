@@ -3,6 +3,7 @@ import axios from "axios";
 import Cheque from "../Entity/Cheque";
 import IPurchase from "../ViewModel/Interface/IPurchase";
 import purchase from "../ViewModel/Purchase";
+import Purchase from "../ViewModel/Purchase";
 
 
 class Api {
@@ -18,13 +19,18 @@ class Api {
         return response.data;
     }
 
-    async AxiosPostPurchase(RequestsPur: RequestPurchase): Promise<IPurchase>{
+    async AxiosPostPurchase(RequestsPur: IPurchase): Promise<IPurchase>{
          const resp = await axios.post<IPurchase>("/addpurchase", RequestsPur);
          return resp.data;
     }
 
-    async GetPurchase(){
-            const resp = await axios.get<IPurchase[]>("/cheques");
+    async GetPurchase() : Promise<purchase[]> {
+            const resp  = await axios.get<Purchase[]>("/getcheques", {
+                method: "get",
+                responseType: "json"
+            });
+            const t = resp.data
+            console.log(t[0].date)
             return resp.data;
     }
 }

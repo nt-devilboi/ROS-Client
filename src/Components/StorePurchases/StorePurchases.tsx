@@ -1,16 +1,19 @@
 import React from "react";
 import IPurchaseServer from "../../Api/PurchaseServer/IPurchaseServer";
+import PurchaseView from "../PurchaseView/PurchaseView";
+import {observer} from "mobx-react";
 
-class StorePurchases extends React.Component<IPurchaseServer>{
+@observer
+export default class StorePurchases extends React.Component<{purchases : IPurchaseServer}>{
 
     componentDidMount() {
-        this.props.DownloadPurchase();
+        this.props.purchases.DownloadPurchase();
     }
 
     render() {
         return (
             <div>
-                
+                {this.props.purchases.ListPurchase.map(p => <PurchaseView purchase={p}/>)}
             </div>
         );
     }

@@ -5,10 +5,10 @@ import IPurchase from "./Interface/IPurchase";
 
 class Purchase implements IPurchase{
 
-    public Date: Date | null = null;
-    public Location: string = '';
-    public NameShop: string = '';
-    public Products: IProduct[] = [];
+    public date: Date | null = null;
+    public location: string = '';
+    public nameShop: string = '';
+    public products: IProduct[] = [];
 
     //записать проверку на ошибки везде с выводом красными буквами, что не верно.
     constructor() {
@@ -16,21 +16,21 @@ class Purchase implements IPurchase{
     }
 
     Rest(): void{
-        this.Date = null;
-        this.Location = " ";
-        this.NameShop = ' ';
-        this.Products = [];
+        this.date = null;
+        this.location = " ";
+        this.nameShop = ' ';
+        this.products = [];
     }
     ChangeNameShop(nameShop: string): void {
-        this.NameShop = nameShop;
+        this.nameShop = nameShop;
     }
 
     ChangeLocation(location: string): void {
-        this.Location = location;
+        this.location = location;
     }
 
     AddProduct(product: IProduct): IProduct {
-        this.Products.push(product);
+        this.products.push(product);
         return product;
     }
 

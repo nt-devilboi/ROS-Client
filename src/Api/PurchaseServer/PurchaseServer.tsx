@@ -2,8 +2,8 @@ import React from "react";
 import Purchase from "../../ViewModel/Purchase";
 import {action, makeAutoObservable, observable} from "mobx";
 import api from "../Api";
-import IPurchase from "../../ViewModel/Interface/IPurchase";
 import IPurchaseServer from "./IPurchaseServer";
+import purchase from "../../ViewModel/Purchase";
 
 export default class PurchaseServer implements IPurchaseServer{
 
@@ -16,6 +16,7 @@ export default class PurchaseServer implements IPurchaseServer{
 
     @action
     async DownloadPurchase() {
-        const list: IPurchase[] = await api.GetPurchase();
+        const list : purchase[] = await api.GetPurchase();
+        this.ListPurchase = list;
     }
 }
