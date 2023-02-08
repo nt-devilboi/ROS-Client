@@ -1,9 +1,11 @@
 import {makeAutoObservable} from "mobx";
-import Api from "../Api/Api";
 import IProduct from "./Interface/IProduct";
 import IPurchase from "./Interface/IPurchase";
+import Product from "./Product";
+import {Guid} from "guid-typescript";
 
-class Purchase implements IPurchase{
+
+class Purchase implements IPurchase {
 
     public date: Date | null = null;
     public location: string = '';
@@ -13,14 +15,17 @@ class Purchase implements IPurchase{
     //записать проверку на ошибки везде с выводом красными буквами, что не верно.
     constructor() {
         makeAutoObservable(this)
+        this.products.push(new Product(Guid.create().toString()))
     }
 
-    Rest(): void{
+    Rest(): void {
         this.date = null;
-        this.location = " ";
+        this.location = '';
         this.nameShop = ' ';
         this.products = [];
+        this.products.push(new Product(Guid.create().toString()))
     }
+
     ChangeNameShop(nameShop: string): void {
         this.nameShop = nameShop;
     }
@@ -29,17 +34,20 @@ class Purchase implements IPurchase{
         this.location = location;
     }
 
-    AddProduct(product: IProduct): IProduct {
+    AddProduct(): IProduct {
+        let product: IProduct = new Product(this.products[0].chequeId.toString());
         this.products.push(product);
         return product;
     }
 
-    LoadToServer(){
-        Api.AxiosPostPurchase(this);
+    GetSum(): number {
+        let result: number = 0;
+        for (let j = 0; j < this.products.length; j++)
+            result += this.products[j].productPrice
+
+        return result;
     }
-
-
-
 }
+
 
 export default Purchase;

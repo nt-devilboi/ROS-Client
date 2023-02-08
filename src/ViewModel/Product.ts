@@ -3,13 +3,17 @@ import IProduct from "./Interface/IProduct";
 import {Guid} from "guid-typescript";
 
 class Product implements IProduct {
-    readonly chequeId: Guid = Guid.create().toJSON().value;
-    readonly productId: Guid = Guid.create().toJSON().value;
-    productName: string = '';
-    productPrice: number = 0;
+    readonly productId: string;
+    readonly chequeId: string;
+    public productName: string;
+    public productPrice: number;
 
-    constructor() {
+    constructor(guidCheque: string) {
         makeAutoObservable(this)
+        this.productName = '';
+        this.productId = Guid.create().toString();
+        this.chequeId = guidCheque;
+        this.productPrice = 0;
     }
 
     ChangePrice(price: string): void {

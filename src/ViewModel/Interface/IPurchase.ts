@@ -12,6 +12,7 @@ export default interface IPurchase {
 
     AddProduct(product: IProduct): IProduct
 
-    LoadToServer(): void
+    GetSum(): number
 
+    Rest(): void
 }

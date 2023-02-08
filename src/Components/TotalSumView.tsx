@@ -1,6 +1,6 @@
 import React from "react";
 
-class PurchaseInput extends React.Component {
+export default class TotalSumView extends React.Component<{sum: number}>{
     render() {
         return (
             <div>

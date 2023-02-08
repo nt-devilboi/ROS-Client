@@ -1,37 +1,32 @@
-import RequestPurchase from "./Requests/RequestPurchase";
-import axios from "axios";
-import Cheque from "../Entity/Cheque";
+import axios, {AxiosError} from "axios";
 import IPurchase from "../ViewModel/Interface/IPurchase";
-import purchase from "../ViewModel/Purchase";
 import Purchase from "../ViewModel/Purchase";
+import statusResponse from "./StatusResponse";
+import StatusResponse from "./StatusResponse";
 
 
 class Api {
+    async AxiosPostPurchase(requestsPur: IPurchase): Promise<statusResponse> {
+        const resp = await axios.post<IPurchase>("/addpurchase", requestsPur);
 
-    async fetchList(): Promise<Cheque[]> {
-        const response = await axios.get<Cheque[]>("/getcheque", {
-            method: "get",
-            responseType: "json"
-        })
-        if (response.status !== 200)
-            throw new Error("Данные та не правильные");
-
-        return response.data;
+        return resp.status;
     }
 
-    async AxiosPostPurchase(RequestsPur: IPurchase): Promise<IPurchase>{
-         const resp = await axios.post<IPurchase>("/addpurchase", RequestsPur);
-         return resp.data;
+    private CheckResponsePurchase(requestPur: IPurchase, responsePur: IPurchase): boolean {
+        return requestPur.nameShop === responsePur.nameShop && responsePur.products[0].chequeId === requestPur.products[0].chequeId;
     }
 
-    async GetPurchase() : Promise<purchase[]> {
-            const resp  = await axios.get<Purchase[]>("/getcheques", {
+    async GetPurchase(): Promise<{ purchases: Purchase[], status: StatusResponse }> {
+        try {
+            const resp = await axios.get<Purchase[]>("/getcheques", {
                 method: "get",
                 responseType: "json"
             });
-            const t = resp.data
-            console.log(t[0].date)
-            return resp.data;
+            return {purchases: resp.data, status: resp.status};
+        } catch (err) {
+            const error = err as AxiosError<Purchase[], any>
+            return {purchases: error.response!.data, status: error.response!.status};
+        }
     }
 }
 

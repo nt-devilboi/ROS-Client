@@ -1,7 +1,7 @@
 import Purchase from "../../ViewModel/Purchase";
 
 export default interface IPurchaseServer{
-    ListPurchase: Purchase[]
+    Purchase: Purchase[]
     DownloadPurchase(): void;
 }
 

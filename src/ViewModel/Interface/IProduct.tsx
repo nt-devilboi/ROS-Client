@@ -1,11 +1,8 @@
-import Product from "../../Entity/Product";
-import {Guid} from "guid-typescript";
-
 export default interface IProduct {
-    readonly productId: Guid;
+    readonly productId: String;
     productPrice: number;
     productName: string;
-    readonly chequeId: Guid;
+    readonly chequeId: String;
 
     ChangePrice(price : string): void
     ChangeName(name: string): void
