@@ -1,14 +1,11 @@
-import Purchase from "../../ViewModel/Purchase";
 import {makeAutoObservable, observable} from "mobx";
 import api from "../Api";
-import IPurchaseServer from "./IPurchaseServer";
-import purchase from "../../ViewModel/Purchase";
-import IPurchase from "../../ViewModel/Interface/IPurchase";
+import PurchaseInfo from "../../ViewModel/PurchaseInfo";
 
-export default class PurchaseServer implements IPurchaseServer{
+export default class PurchaseServer {
 
     @observable
-    public Purchase: Purchase[] = []
+    public Purchase: PurchaseInfo[] = []
 
     constructor() {
         makeAutoObservable(this)

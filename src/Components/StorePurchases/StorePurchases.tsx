@@ -1,11 +1,11 @@
 import React from "react";
-import IPurchaseServer from "../../Api/PurchaseServer/IPurchaseServer";
 import PurchaseView from "../PurchaseView/PurchaseView";
 import {observer} from "mobx-react";
 import './StorePurchases.css'
+import PurchaseServer from "../../Api/PurchaseServer/PurchaseServer";
 
 @observer
-export default class StorePurchases extends React.Component<{ purchases: IPurchaseServer }> {
+export default class StorePurchases extends React.Component<{ purchases: PurchaseServer }> {
 
     componentDidMount() {
         this.props.purchases.DownloadPurchase();
@@ -15,11 +15,7 @@ export default class StorePurchases extends React.Component<{ purchases: IPurcha
         return (
             <div className={"Purchases"}>
                 <p>
-                    {this.props.purchases.Purchase.map(p =>
-                        <PurchaseView
-                            key={p.products[0].chequeId.toString()}
-                            purchase={p}/>
-                    )}
+                    {this.props.purchases.Purchase.map(p => <PurchaseView key={p.id.toString()} purchase={p}/>)}
                 </p>
             </div>
         );
